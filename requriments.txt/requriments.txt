@@ -1,0 +1,6 @@
+pandas
+numpy
+sqlalchemy
+psycopg2-binary   # Or mysql-connector-python if using MySQL
+python-dotenv
+jupyter
