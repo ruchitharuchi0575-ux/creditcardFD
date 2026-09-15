@@ -1,0 +1,13 @@
+2026-09-11 07:52:46,728 - INFO - Starting Data Cleaning
+2026-09-11 07:52:47,856 - INFO - Completed Data Cleaning
+2026-09-11 07:52:47,856 - INFO - Starting Data Quality Validation
+2026-09-11 07:52:47,902 - INFO - Completed Data Quality Validation
+2026-09-11 07:52:47,902 - INFO - Starting SQL Data Ingestion
+2026-09-11 07:52:49,069 - INFO - Completed SQL Data Ingestion
+2026-09-11 07:52:49,070 - INFO - Starting SQL Feature Engineering View Creation
+2026-09-11 07:52:49,157 - INFO - Completed SQL Feature Engineering View Creation
+2026-09-11 07:52:49,158 - INFO - Starting Automated Pytest Suite
+2026-09-11 07:52:50,694 - INFO - Completed Automated Pytest Suite
+2026-09-11 07:52:50,694 - INFO - Starting XGBoost Model Training
+2026-09-11 07:52:54,056 - ERROR - Failed XGBoost Model Training: Traceback (most recent call last):
+  
