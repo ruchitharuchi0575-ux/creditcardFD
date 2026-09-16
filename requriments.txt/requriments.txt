@@ -1,6 +1,11 @@
 pandas
 numpy
+scikit-learn
+xgboost
+joblib
 sqlalchemy
-psycopg2-binary   # Or mysql-connector-python if using MySQL
-python-dotenv
-jupyter
+streamlit
+plotly
+scipy
+pydantic
+pytest

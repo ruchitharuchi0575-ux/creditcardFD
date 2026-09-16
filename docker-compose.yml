@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  fraud-detection-app:
+    build: .
+    container_name: credit_card_fraud_pipeline
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+      - ./logs:/app/logs
+    restart: always
