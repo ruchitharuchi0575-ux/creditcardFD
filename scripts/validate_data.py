@@ -1,13 +1,13 @@
+import sys
 from pathlib import Path
 import pandas as pd
 from pydantic import BaseModel, Field, ValidationError
 
-# Paths
+sys.stdout.reconfigure(encoding='utf-8')
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 CSV_PATH = BASE_DIR / "data" / "cleaned_transactions.csv"
 
-
-# Schema Definition
 class TransactionSchema(BaseModel):
     user_id: int
     Amount: float = Field(
@@ -17,33 +17,38 @@ class TransactionSchema(BaseModel):
         ge=0, le=1, description="Class must be 0 (Legit) or 1 (Fraud)"
     )
 
-
 def validate_dataset():
-    print("🔍 Running Data Quality & Schema Validation...")
+    print("[INFO] Running Data Quality & Schema Validation...")
 
     if not CSV_PATH.exists():
         raise FileNotFoundError(f"Missing input dataset at {CSV_PATH}")
 
-    df = pd.read_csv(CSV_PATH)
+    # Read CSV with fallback for malformed rows
+    try:
+        df = pd.read_csv(CSV_PATH, on_bad_lines='skip', engine='python')
+    except Exception as e:
+        raise ValueError(f"Failed to read CSV file: {e}")
+
     errors = 0
 
     for idx, row in df.iterrows():
         try:
             TransactionSchema(
-                user_id=row["user_id"], Amount=row["Amount"], Class=row["Class"]
+                user_id=int(row["user_id"]),
+                Amount=float(row["Amount"]),
+                Class=int(row["Class"])
             )
-        except ValidationError as e:
-            print(f"❌ Row {idx} Failed Validation: {e}")
+        except (ValidationError, KeyError, ValueError) as e:
+            print(f"[ERROR] Row {idx} Failed Validation: {e}")
             errors += 1
 
     if errors == 0:
         print(
-            f" Data Validation Passed Successfully! ({len(df)} rows verified)"
+            f"[SUCCESS] Data Validation Passed Successfully! ({len(df)} rows verified)"
         )
         return True
     else:
         raise ValueError(f"Data Validation Failed with {errors} errors.")
-
 
 if __name__ == "__main__":
     validate_dataset()

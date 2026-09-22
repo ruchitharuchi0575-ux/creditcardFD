@@ -1,28 +1,51 @@
-import pandas as pd
-from sqlalchemy import create_engine
 import streamlit as st
+import pandas as pd
+import sqlite3
+import os
 
-engine = create_engine("sqlite:///data/fraud_db.db")
+# --- SAFE DATABASE INITIALIZATION & QUERY ---
+def get_high_risk_data():
+    # Ensure data directory exists
+    os.makedirs("data", exist_ok=True)
+    
+    conn = sqlite3.connect("data/fraud_predictions.db")
+    cursor = conn.cursor()
+    
+    # 1. Create predictions table if it does not exist yet
+    cursor.execute("""
+        CREATE TABLE IF NOT EXISTS predictions (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            Amount REAL,
+            fraud_probability REAL,
+            risk_level TEXT,
+            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+        )
+    """)
+    conn.commit()
+    
+    # 2. Safely query high-risk records
+    query = "SELECT * FROM predictions WHERE risk_level = 'HIGH RISK'"
+    df = pd.read_sql_query(query, conn)
+    conn.close()
+    
+    return df
 
-st.title("Credit Card Fraud Intelligence Dashboard (Tier 3)")
+# --- DASHBOARD UI ---
+st.subheader("High Risk Fraud Flagged by ML Model")
 
-# Query predicted scores from SQLite
-try:
-    df = pd.read_sql("SELECT * FROM predicted_fraud_scores", engine)
+high_risk_df = get_high_risk_data()
 
-    # Key Metrics Display
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Total Transactions", len(df))
-    col2.metric("Predicted Fraud Cases", int((df["predicted_fraud"] == 1).sum()))
-    col3.metric(
-        "High Risk Count", int((df["risk_level"] == "HIGH RISK").sum())
-    )
-
-    st.subheader("High Risk Fraud Flagged by ML Model")
-    high_risk_df = df[df["risk_level"] == "HIGH RISK"][
-        ["user_id", "Amount", "fraud_probability", "risk_level"]
-    ]
+if not high_risk_df.empty:
     st.dataframe(high_risk_df)
-
-except Exception as e:
-    st.warning("Please run `scripts/predict_batch.py` to generate ML predictions table.")
+    
+    csv_data = high_risk_df.to_csv(index=False).encode('utf-8')
+    st.download_button(
+        label="📥 Download High Risk Report (CSV)",
+        data=csv_data,
+        file_name="high_risk_fraud_predictions.csv",
+        mime="text/csv",
+        key="download-high-risk-csv"
+    )
+else:
+    st.info("No high-risk transactions recorded yet.")

@@ -10,4 +10,157 @@
 2026-09-11 07:52:50,694 - INFO - Completed Automated Pytest Suite
 2026-09-11 07:52:50,694 - INFO - Starting XGBoost Model Training
 2026-09-11 07:52:54,056 - ERROR - Failed XGBoost Model Training: Traceback (most recent call last):
-  
+  2026-09-23 04:28:19,898 - INFO - Starting Data Cleaning
+2026-09-23 04:28:20,529 - INFO - Completed Data Cleaning
+2026-09-23 04:28:20,529 - INFO - Starting Data Quality Validation
+2026-09-23 04:28:21,737 - ERROR - Failed Data Quality Validation: Traceback (most recent call last):
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 49, in <module>
+    validate_dataset()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 22, in validate_dataset
+    print("\U0001f50d Running Data Quality & Schema Validation...")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f50d' in position 0: character maps to <undefined>
+
+2026-09-23 04:32:17,028 - INFO - Starting Data Cleaning
+2026-09-23 04:32:17,774 - INFO - Completed Data Cleaning
+2026-09-23 04:32:17,775 - INFO - Starting Data Quality Validation
+2026-09-23 04:32:18,709 - ERROR - Failed Data Quality Validation: Traceback (most recent call last):
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 49, in <module>
+    validate_dataset()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 27, in validate_dataset
+    df = pd.read_csv(CSV_PATH)
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 306, in _read
+    return parser.read(nrows)
+           ~~~~~~~~~~~^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\readers.py", line 1947, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        nrows
+        ^^^^^
+    )
+    ^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python313\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 215, in read
+    chunks = self._reader.read_low_memory(nrows)
+  File "pandas/_libs/parsers.pyx", line 832, in pandas._libs.parsers.TextReader.read_low_memory
+  File "pandas/_libs/parsers.pyx", line 897, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 868, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 885, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2084, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 6 fields in line 13, saw 8
+
+
+2026-09-23 04:34:46,392 - INFO - Starting Data Cleaning
+2026-09-23 04:34:47,048 - INFO - Completed Data Cleaning
+2026-09-23 04:34:47,049 - INFO - Starting Data Quality Validation
+2026-09-23 04:34:48,343 - ERROR - Failed Data Quality Validation: Traceback (most recent call last):
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 49, in <module>
+    validate_dataset()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 22, in validate_dataset
+    print("\U0001f50d Running Data Quality & Schema Validation...")
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f50d' in position 0: character maps to <undefined>
+
+2026-09-23 04:35:19,366 - INFO - Starting Data Cleaning
+2026-09-23 04:35:20,125 - INFO - Completed Data Cleaning
+2026-09-23 04:35:20,125 - INFO - Starting Data Quality Validation
+2026-09-23 04:35:20,939 - ERROR - Failed Data Quality Validation: Traceback (most recent call last):
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 49, in <module>
+    validate_dataset()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 27, in validate_dataset
+    df = pd.read_csv(CSV_PATH)
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 306, in _read
+    return parser.read(nrows)
+           ~~~~~~~~~~~^^^^^^^
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1947, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        nrows
+        ^^^^^
+    )
+    ^
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 215, in read
+    chunks = self._reader.read_low_memory(nrows)
+  File "pandas/_libs/parsers.pyx", line 832, in pandas._libs.parsers.TextReader.read_low_memory
+  File "pandas/_libs/parsers.pyx", line 897, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 868, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 885, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2084, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 6 fields in line 13, saw 8
+
+
+2026-09-23 04:42:43,749 - INFO - Starting Data Cleaning
+2026-09-23 04:42:44,682 - INFO - Completed Data Cleaning
+2026-09-23 04:42:44,682 - INFO - Starting Data Quality Validation
+2026-09-23 04:42:46,029 - ERROR - Failed Data Quality Validation: Traceback (most recent call last):
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 53, in <module>
+    validate_dataset()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 31, in validate_dataset
+    df = pd.read_csv(CSV_PATH)
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 306, in _read
+    return parser.read(nrows)
+           ~~~~~~~~~~~^^^^^^^
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1947, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        nrows
+        ^^^^^
+    )
+    ^
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 215, in read
+    chunks = self._reader.read_low_memory(nrows)
+  File "pandas/_libs/parsers.pyx", line 832, in pandas._libs.parsers.TextReader.read_low_memory
+  File "pandas/_libs/parsers.pyx", line 897, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 868, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 885, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2084, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 6 fields in line 13, saw 8
+
+
+2026-09-23 04:51:47,012 - INFO - Starting Data Cleaning
+2026-09-23 04:51:47,703 - INFO - Completed Data Cleaning
+2026-09-23 04:51:47,703 - INFO - Starting Data Quality Validation
+2026-09-23 04:51:48,677 - ERROR - Failed Data Quality Validation: Traceback (most recent call last):
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 53, in <module>
+    validate_dataset()
+    ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\DELL\Desktop\creditcardFD\scripts\validate_data.py", line 31, in validate_dataset
+    df = pd.read_csv(CSV_PATH)
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 873, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 306, in _read
+    return parser.read(nrows)
+           ~~~~~~~~~~~^^^^^^^
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\readers.py", line 1947, in read
+    ) = self._engine.read(  # type: ignore[attr-defined]
+        ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        nrows
+        ^^^^^
+    )
+    ^
+  File "C:\Users\DELL\Desktop\creditcardFD\.venv\Lib\site-packages\pandas\io\parsers\c_parser_wrapper.py", line 215, in read
+    chunks = self._reader.read_low_memory(nrows)
+  File "pandas/_libs/parsers.pyx", line 832, in pandas._libs.parsers.TextReader.read_low_memory
+  File "pandas/_libs/parsers.pyx", line 897, in pandas._libs.parsers.TextReader._read_rows
+  File "pandas/_libs/parsers.pyx", line 868, in pandas._libs.parsers.TextReader._tokenize_rows
+  File "pandas/_libs/parsers.pyx", line 885, in pandas._libs.parsers.TextReader._check_tokenize_status
+  File "pandas/_libs/parsers.pyx", line 2084, in pandas._libs.parsers.raise_parser_error
+pandas.errors.ParserError: Error tokenizing data. C error: Expected 6 fields in line 13, saw 8
+
+

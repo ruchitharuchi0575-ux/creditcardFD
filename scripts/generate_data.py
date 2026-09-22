@@ -1,6 +1,4 @@
 import sqlite3
-import numpy as np
-import pandas as pd
 import random
 import os
 
@@ -9,7 +7,6 @@ def generate_bulk_transactions(num_records=500):
     conn = sqlite3.connect("data/fraud_predictions.db")
     cursor = conn.cursor()
 
-    # Ensure table exists
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS predictions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -26,7 +23,6 @@ def generate_bulk_transactions(num_records=500):
         user_id = random.randint(1000, 9999)
         amount = round(random.uniform(5.0, 2500.0), 2)
         
-        # ~5% chance of being high risk fraud
         if random.random() < 0.05:
             fraud_prob = round(random.uniform(0.85, 0.99), 4)
             risk_level = "HIGH RISK"
@@ -43,7 +39,7 @@ def generate_bulk_transactions(num_records=500):
 
     conn.commit()
     conn.close()
-    print(f"✅ Successfully inserted {num_records} new transaction records into data/fraud_predictions.db")
+    print(f"✅ Inserted {num_records} transactions into data/fraud_predictions.db")
 
 if __name__ == "__main__":
     generate_bulk_transactions(500)
