@@ -3,15 +3,20 @@ import pandas as pd
 import sqlite3
 import os
 
-# --- SAFE DATABASE INITIALIZATION & QUERY ---
+# --- MUST BE THE FIRST STREAMLIT COMMAND ---
+st.set_page_config(
+    page_title="Credit Card Fraud Dashboard",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# --- CACHE DATABASE READS TO REDUCE WEBSOCKET STRAIN ---
+@st.cache_data(ttl=10)  # Refreshes every 10 seconds
 def get_high_risk_data():
-    # Ensure data directory exists
     os.makedirs("data", exist_ok=True)
-    
     conn = sqlite3.connect("data/fraud_predictions.db")
     cursor = conn.cursor()
     
-    # 1. Create predictions table if it does not exist yet
     cursor.execute("""
         CREATE TABLE IF NOT EXISTS predictions (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,20 +29,19 @@ def get_high_risk_data():
     """)
     conn.commit()
     
-    # 2. Safely query high-risk records
     query = "SELECT * FROM predictions WHERE risk_level = 'HIGH RISK'"
     df = pd.read_sql_query(query, conn)
     conn.close()
-    
     return df
 
-# --- DASHBOARD UI ---
+# --- DASHBOARD LAYOUT ---
+st.title("Credit Card Fraud Intelligence Dashboard")
 st.subheader("High Risk Fraud Flagged by ML Model")
 
 high_risk_df = get_high_risk_data()
 
 if not high_risk_df.empty:
-    st.dataframe(high_risk_df)
+    st.dataframe(high_risk_df, use_container_width=True)
     
     csv_data = high_risk_df.to_csv(index=False).encode('utf-8')
     st.download_button(
