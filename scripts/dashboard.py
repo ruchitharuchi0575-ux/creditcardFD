@@ -52,7 +52,8 @@ if not high_risk_df.empty:
         key="download-high-risk-csv"
     )
 else:
-    st.info("No high-risk transactions recorded yet.")import streamlit as st
+    st.info("No high-risk transactions recorded yet.")
+import streamlit as st
 import pandas as pd
 import sqlite3
 import os
